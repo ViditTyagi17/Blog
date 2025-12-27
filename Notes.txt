@@ -1,0 +1,45 @@
+// What is React Router?
+// React Router is a library that allows navigation between different pages or components
+// in a React app without reloading the page.
+// It helps create a Single Page Application (SPA) experience where the page doesn’t refresh on route changes.
+
+
+// createBrowserRouter
+// Used to define the route structure of your app.
+// You specify which path (like "/", "/about", "/login") should show which component.
+// It returns a router object that is later passed to <RouterProvider>.
+
+
+// RouterProvider
+// <RouterProvider> gives routing context to your entire app.
+// It connects the React app to the router created using createBrowserRouter.
+// Without it, components like <Link>, <Outlet>, or useNavigate() will not work.
+
+
+// Link
+// <Link> is used for navigation between routes through the UI.
+// It works like an <a> tag but does not reload the page, ensuring smooth transitions.
+
+
+// useNavigate
+// useNavigate() is a hook used to navigate between pages using JavaScript logic.
+// Commonly used after login, logout, or form submission to redirect users.
+
+
+// Outlet
+// <Outlet> acts as a placeholder for rendering child routes inside a parent layout.
+// It is used when you have nested routes (for example, showing pages inside a main layout).
+
+
+// navItems
+// navItems is an array of navigation links used to dynamically generate the navbar.
+// It helps display different links depending on user state (like Login, Logout, Home, etc.).
+
+
+// Flow Summary
+// 1. Define routes using createBrowserRouter.
+// 2. Connect router to the app using <RouterProvider>.
+// 3. Use <Link> for navigation through the UI.
+// 4. Use useNavigate() for navigation using JavaScript logic.
+// 5. Use <Outlet> to render child routes inside a layout.
+// 6. Use navItems to create dynamic navigation menus.
