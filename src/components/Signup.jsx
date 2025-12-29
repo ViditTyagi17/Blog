@@ -27,31 +27,20 @@ function Signup() {
     }
   };
   return (
-    <div className="flex items-center justify-center w-full">
-      <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border  border-black/10">
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
-            <Logo width="100%" />
-          </span>
-        </div>
+    <div className="flex items-center justify-center w-full ">
+      <div className="mx-auto w-full max-w-lg bg-white dark:bg-neutral-800 rounded-xl p-10 shadow-md border  border-black/10">
+       
 
-        <h2 className="text-center text-2xl font-bold leading-tight">
+        <h2 className="text-center text-2xl font-bold leading-tight dark:text-white">
           Sign up to create account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
-          Already have any account?&nbsp;
-          <Link
-            to="/login"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
-          >
-            Sign In
-          </Link>
-        </p>
+        
         {error && <p className="text-red-600 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(handleSignup)}>
-          <div className="space-y-5">
-            <input
+        <form className="mt-8" onSubmit={handleSubmit(handleSignup)}>
+          <div className="space-y-5 dark:text-white">
+            <Input
+            className="rounded-md border-2 border-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none px-4 py-2 "
               label="Full Name: "
               placeholder="Enter your full name"
               {...register("name", {
@@ -60,6 +49,7 @@ function Signup() {
             />
 
             <Input
+            className="rounded-md border-2 border-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none px-4 py-2 "
               label="Email :"
               type="email"
               placeholder="enter your email"
@@ -73,7 +63,7 @@ function Signup() {
               })}
             />
 
-            <input
+            <Input
               label="Password: "
               type="password"
               placeholder="Enter your Password"
@@ -82,11 +72,20 @@ function Signup() {
               })}
             />
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full rounded-md bg-cyan-400   transition-colors font-semibold  shadow-md">
               Create Account
             </Button>
           </div>
         </form>
+        <p className="mt-2 text-center text-base text-gray-700 dark:text-gray-300">
+          Already have any account?&nbsp;
+          <Link
+            to="/login"
+            className="font-medium text-primary transition-all duration-200 hover:underline"
+          >
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );

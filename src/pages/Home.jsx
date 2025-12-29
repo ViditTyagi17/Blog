@@ -5,23 +5,22 @@ import { Container, PostCard } from "../components";
 import { useSelector } from "react-redux";
 import { Query } from "appwrite";
 
-
 function Home() {
   const [posts, setPosts] = useState([]);
-  const user=useSelector((state)=>state.auth.status)
+  const user = useSelector((state) => state.auth);
   useEffect(() => {
-    service.getPosts([Query.limit(3),Query.orderDesc("$createdAt")]).then((posts) => {
-      if (posts) {
-        // setPosts(posts.documents);
-        setPosts(posts?.rows ?? []);
-
-      }
-    });
+    service
+      .getPosts([Query.limit(3), Query.orderDesc("$createdAt")])
+      .then((posts) => {
+        if (posts) {
+          // setPosts(posts.documents);
+          setPosts(posts?.rows ?? []);
+        }
+      });
   }, []);
 
-
-  if(!user){
-    return(
+  if (!user) {
+    return (
       <div className="py-8 mt-4 text-center">
         <Container>
           <div className="flex flex-wrap">
@@ -33,8 +32,7 @@ function Home() {
           </div>
         </Container>
       </div>
-
-    )
+    );
   }
 
   if (posts.length === 0) {
@@ -56,12 +54,10 @@ function Home() {
   return (
     <div className=" w-full py-8 ">
       <Container>
-        <div className="flex flex-wrap">
-          {posts.map((post) => {
-            return <div className="p-2 w-1/4" key={post.$id}>
-              <PostCard {...post}  />
-            </div>;
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {posts.map((post) => (
+            <PostCard key={post.$id} {...post} />
+          ))}
         </div>
       </Container>
     </div>

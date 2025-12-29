@@ -20,24 +20,24 @@ function Header() {
   ];
 
   return (
-    <header className="w-full py-3 shadow-md bg-white dark:bg-neutral-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800">
+    <header className="w-full py-4 shadow-md bg-white dark:bg-neutral-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800  ">
       <Container>
-        <nav className="flex items-center">
+        <nav className="flex flex-col sm:flex-row  sm:gap-6 gap-3 sm:items-center sm:justify-between ">
           {/* Logo */}
-          <div className="mr-6">
+          <div className="p-3 sm:p-0">
             <Link to={"/"}>
               <Logo />
             </Link>
           </div>
 
           {/* Nav Items */}
-          <ul className="flex ml-auto items-center gap-3">
+          <ul className="flex  sm:gap-3 gap-2">
             {navItems.map(
               (item) =>
                 item.active && (
                   <li key={item.name}>
                     <button
-                      className="px-4 py-2 rounded-full transition-colors duration-200 hover:bg-blue-500 hover:text-white"
+                      className="sm:px-4 sm:py-2 px-2 py-1  rounded-full transition-colors duration-200 hover:bg-cyan-500 hover:text-white"
                       onClick={() => navigate(item.slug)}
                     >
                       {item.name}
@@ -45,18 +45,16 @@ function Header() {
                   </li>
                 )
             )}
-
             {/* Theme Toggle */}
             <li>
               <Button
-                className="px-4 py-2 rounded-full transition-colors duration-200 hover:bg-blue-500 hover:text-white"
+                
                 onClick={() => dispatch(themeToggler())}
               >
                 {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
               </Button>
             </li>
 
-            {/* Logout */}
             {authStatus && (
               <li>
                 <LogoutButton />

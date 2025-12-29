@@ -1,28 +1,43 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+
 import authService from "./appwrite/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, setLoading } from "./store/authSlice";
 import { Outlet } from "react-router-dom";
 import Header from './components/header/Header'
 import  Footer  from './components/footer/Footer.jsx';
+import { setTheme } from "../theme/themeSlice.js";
 
 
 function App() {
   const loading = useSelector((state)=>state.auth.loading)
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    authService
-      .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login( userData ));
-        } else {
-          dispatch(logout());
-        }
-      })
-      .finally(()=>dispatch(setLoading(false)));
+  
+useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    dispatch(setTheme(mediaQuery.matches ? "dark" : "light"));
+    
+    const handleChange = (e) => {
+      dispatch(setTheme(e.matches ? "dark" : "light"));
+    };
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [dispatch]);
+
+   useEffect(() => {
+    dispatch(setLoading(true));
+    authService.getCurrentUser().then((user) => {
+      if (user) {
+        dispatch(login(user));
+
+        
+      } else {
+        dispatch(logout());
+      }
+    }).finally(()=>dispatch(setLoading(false)));
   }, [dispatch]);
 
   if(loading){

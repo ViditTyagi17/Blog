@@ -11,7 +11,7 @@ function Button({
   return (
     <button
       type={type}
-      className={`   px-4 py-2 inline-block  rounded-lg hover:bg-blue-500 duration-200   ${className}   `}
+      className={`   sm:px-4 sm:py-2 px-2 py-1  rounded-full transition-colors duration-200 hover:bg-cyan-500  hover:text-white  ${className}   `}
       {...props}
     >
       {children}

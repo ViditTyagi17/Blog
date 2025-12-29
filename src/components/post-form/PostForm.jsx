@@ -135,7 +135,7 @@ function PostForm({ post }) {
         <Button
           type="submit"
           bgcolor={post ? "bg-green-500" : undefined}
-          className="w-full bg-gray-500 dark:bg-gray-900 text-white"
+          className="w-full dark:bg-neutral-800 bg-white mt-4 shadow-md"
         >
           {post ? "Update" : "Submit"}
         </Button>
